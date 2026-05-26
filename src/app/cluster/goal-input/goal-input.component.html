@@ -1,0 +1,25 @@
+<div class="goal-input-container z-20">
+  <input
+    id="goal-input"
+    type="number"
+    class="form-control"
+    placeholder="Enter goal node..."
+    min="3"
+    max="132"
+    [formControl]="goalControl"
+  />
+
+  <button
+    class="btn btn-primary"
+    [disabled]="goalControl.invalid"
+    (click)="setGoal()"
+  >
+    Set Goal
+  </button>
+
+  <i
+    *ngIf="goalSent"
+    class="bi bi-check-circle-fill text-success"
+    aria-label="goal sent"
+  ></i>
+</div>

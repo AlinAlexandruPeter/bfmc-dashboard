@@ -1,0 +1,36 @@
+.goal-input-container {
+    position: absolute;
+    top: clamp(6px, 1vw, 12px);
+    left: clamp(6px, 1vw, 12px);
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    justify-content: flex-start;
+    padding: clamp(6px, 1vw, 12px);
+    gap: clamp(6px, 1vw, 12px);
+}
+
+.form-control {
+    background-color: rgba(21, 23, 24, 0.3);
+    outline: none;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 12px;
+    font-size: clamp(12px, 1vw, 16px);
+    min-width: 200px;
+}
+
+.goal-input-container button {
+    padding: 8px 12px;
+    font-size: 0.7vw;
+    background-color: #2b8fd1;
+    color: white;
+    border-radius: 0.3vw;
+    user-select: none;
+    text-align: center;
+    text-decoration: none;
+    -webkit-user-select: none;
+    border: none;
+    filter: drop-shadow(0 0 0.3vw rgb(0, 0, 0, 0.3));
+}
