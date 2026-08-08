@@ -71,8 +71,9 @@ export class WebSocketService {
 
   constructor() {
     this.webSocket = new Socket({
-    url: "http://192.168.50.8:5005",
-    options: {},
+      // url: "http://192.168.50.8:5005",
+      url: "http://localhost:5005",
+      options: {},
     });
 
     // Listen for all messages from the WebSocket server
