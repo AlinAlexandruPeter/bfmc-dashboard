@@ -26,7 +26,7 @@
 // OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-import { Injectable } from '@angular/core';
+import { Injectable, ApplicationRef } from '@angular/core';
 import { Socket } from 'ngx-socket-io';
 import { Observable, Subject } from 'rxjs';
 @Injectable({
@@ -69,12 +69,11 @@ export class WebSocketService {
     'ImuAck'
   ]);
 
-  constructor() {
+  constructor(private appRef: ApplicationRef) {
     this.webSocket = new Socket({
-      // url: "http://192.168.50.8:5005",
       url: "http://localhost:5005",
-      options: {},
-    });
+      options: {}
+    }, this.appRef);
 
     // Listen for all messages from the WebSocket server
     this.webSocket.onAny((eventName: string, data: any) => {
@@ -252,7 +251,7 @@ export class WebSocketService {
   }
 
   isReconnecting(): boolean {
-    return this.webSocket.ioSocket.connecting;
+    return this.webSocket.ioSocket.connected;
   }
 
   // Method to end the WebSocket connection

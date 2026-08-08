@@ -38,10 +38,22 @@ import { CommonModule } from '@angular/common'
 import * as CryptoJS from 'crypto-js';
 import { ClusterService } from './cluster/cluster.service';
 
+import { NgxFlickeringGridComponent } from '@omnedia/ngx-flickering-grid';
+import { NavbarComponent } from "./navbar/navbar.component";
+
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [TableComponent, ClusterComponent, StateSwitchComponent, SettingsComponent, FormsModule, CommonModule],
+  imports: [
+    TableComponent,
+    ClusterComponent,
+    StateSwitchComponent,
+    SettingsComponent,
+    FormsModule,
+    CommonModule,
+    NgxFlickeringGridComponent,
+    NavbarComponent
+],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

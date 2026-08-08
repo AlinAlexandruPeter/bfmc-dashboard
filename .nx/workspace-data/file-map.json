@@ -1,0 +1,624 @@
+{
+  "version": "6.0",
+  "nxVersion": "23.1.1",
+  "pathMappings": {},
+  "nxJsonPlugins": [],
+  "fileMap": {
+    "projectFileMap": {},
+    "nonProjectFiles": [
+      {
+        "file": ".postcssrc.json",
+        "hash": "3238241118719959164"
+      },
+      {
+        "file": "README.md",
+        "hash": "15433621969585109260"
+      },
+      {
+        "file": "angular.json",
+        "hash": "2875059206951149713"
+      },
+      {
+        "file": "components.json",
+        "hash": "1782399058892246833"
+      },
+      {
+        "file": "package-lock.json",
+        "hash": "16092654235484797653"
+      },
+      {
+        "file": "package.json",
+        "hash": "15789156541678783077"
+      },
+      {
+        "file": "simulator/dashboard-simulator.js",
+        "hash": "10659448717090394288"
+      },
+      {
+        "file": "simulator/dashboard-simulator.test.js",
+        "hash": "11959369071910636939"
+      },
+      {
+        "file": "src/app/app.component.css",
+        "hash": "3011055201868234587"
+      },
+      {
+        "file": "src/app/app.component.html",
+        "hash": "14523465453608401359"
+      },
+      {
+        "file": "src/app/app.component.spec.ts",
+        "hash": "3281568587111112484"
+      },
+      {
+        "file": "src/app/app.component.ts",
+        "hash": "13066342927879823672"
+      },
+      {
+        "file": "src/app/app.config.ts",
+        "hash": "2877492197331720443"
+      },
+      {
+        "file": "src/app/cluster/battery-level/battery-level.component.css",
+        "hash": "1678847464717538107"
+      },
+      {
+        "file": "src/app/cluster/battery-level/battery-level.component.html",
+        "hash": "13795155860073996925"
+      },
+      {
+        "file": "src/app/cluster/battery-level/battery-level.component.spec.ts",
+        "hash": "4924547997353360215"
+      },
+      {
+        "file": "src/app/cluster/battery-level/battery-level.component.ts",
+        "hash": "15580453048952048403"
+      },
+      {
+        "file": "src/app/cluster/car/car.component.css",
+        "hash": "5892684306295780090"
+      },
+      {
+        "file": "src/app/cluster/car/car.component.html",
+        "hash": "7282139483755177120"
+      },
+      {
+        "file": "src/app/cluster/car/car.component.spec.ts",
+        "hash": "4475024541843527823"
+      },
+      {
+        "file": "src/app/cluster/car/car.component.ts",
+        "hash": "2074564595916268834"
+      },
+      {
+        "file": "src/app/cluster/cluster.component.css",
+        "hash": "15043993915029687831"
+      },
+      {
+        "file": "src/app/cluster/cluster.component.html",
+        "hash": "15515710046020256788"
+      },
+      {
+        "file": "src/app/cluster/cluster.component.spec.ts",
+        "hash": "3166310736364862266"
+      },
+      {
+        "file": "src/app/cluster/cluster.component.ts",
+        "hash": "82536043678606614"
+      },
+      {
+        "file": "src/app/cluster/cluster.service.spec.ts",
+        "hash": "10808650135810438948"
+      },
+      {
+        "file": "src/app/cluster/cluster.service.ts",
+        "hash": "2143809008891487793"
+      },
+      {
+        "file": "src/app/cluster/goal-input/goal-input.component.css",
+        "hash": "1037801378440529587"
+      },
+      {
+        "file": "src/app/cluster/goal-input/goal-input.component.html",
+        "hash": "6747761833668153380"
+      },
+      {
+        "file": "src/app/cluster/goal-input/goal-input.component.spec.ts",
+        "hash": "11427402649777385753"
+      },
+      {
+        "file": "src/app/cluster/goal-input/goal-input.component.ts",
+        "hash": "10453953469878968500"
+      },
+      {
+        "file": "src/app/cluster/hardware-data/hardware-data.component.css",
+        "hash": "13659245010393853421"
+      },
+      {
+        "file": "src/app/cluster/hardware-data/hardware-data.component.html",
+        "hash": "8794900601010174154"
+      },
+      {
+        "file": "src/app/cluster/hardware-data/hardware-data.component.spec.ts",
+        "hash": "9330309497858943192"
+      },
+      {
+        "file": "src/app/cluster/hardware-data/hardware-data.component.ts",
+        "hash": "8600694827471435852"
+      },
+      {
+        "file": "src/app/cluster/hardware-data/indicator/indicator.component.css",
+        "hash": "5218234062289313926"
+      },
+      {
+        "file": "src/app/cluster/hardware-data/indicator/indicator.component.html",
+        "hash": "8799589535702748068"
+      },
+      {
+        "file": "src/app/cluster/hardware-data/indicator/indicator.component.spec.ts",
+        "hash": "3447377746610142937"
+      },
+      {
+        "file": "src/app/cluster/hardware-data/indicator/indicator.component.ts",
+        "hash": "17185470484445784946"
+      },
+      {
+        "file": "src/app/cluster/instant-consumption/instant-consumption.component.css",
+        "hash": "2821112998163268845"
+      },
+      {
+        "file": "src/app/cluster/instant-consumption/instant-consumption.component.html",
+        "hash": "6809413339169665455"
+      },
+      {
+        "file": "src/app/cluster/instant-consumption/instant-consumption.component.spec.ts",
+        "hash": "10205828756711862678"
+      },
+      {
+        "file": "src/app/cluster/instant-consumption/instant-consumption.component.ts",
+        "hash": "847764016541306133"
+      },
+      {
+        "file": "src/app/cluster/kl-switch/kl-switch.component.css",
+        "hash": "6555328654363247533"
+      },
+      {
+        "file": "src/app/cluster/kl-switch/kl-switch.component.html",
+        "hash": "17651447053056915882"
+      },
+      {
+        "file": "src/app/cluster/kl-switch/kl-switch.component.spec.ts",
+        "hash": "6851633173576923456"
+      },
+      {
+        "file": "src/app/cluster/kl-switch/kl-switch.component.ts",
+        "hash": "6097778495162550817"
+      },
+      {
+        "file": "src/app/cluster/live-camera/live-camera.component.css",
+        "hash": "8600889631069503524"
+      },
+      {
+        "file": "src/app/cluster/live-camera/live-camera.component.html",
+        "hash": "14325853572860996203"
+      },
+      {
+        "file": "src/app/cluster/live-camera/live-camera.component.spec.ts",
+        "hash": "9748385119182941238"
+      },
+      {
+        "file": "src/app/cluster/live-camera/live-camera.component.ts",
+        "hash": "2903228170192557539"
+      },
+      {
+        "file": "src/app/cluster/map/map-cursor/map-cursor.component.css",
+        "hash": "4874177440662259840"
+      },
+      {
+        "file": "src/app/cluster/map/map-cursor/map-cursor.component.html",
+        "hash": "12806329634178333179"
+      },
+      {
+        "file": "src/app/cluster/map/map-cursor/map-cursor.component.spec.ts",
+        "hash": "17468665883567773437"
+      },
+      {
+        "file": "src/app/cluster/map/map-cursor/map-cursor.component.ts",
+        "hash": "116117244711298369"
+      },
+      {
+        "file": "src/app/cluster/map/map-semaphore/map-semaphore.component.css",
+        "hash": "3191079172814246352"
+      },
+      {
+        "file": "src/app/cluster/map/map-semaphore/map-semaphore.component.html",
+        "hash": "14348145277381146879"
+      },
+      {
+        "file": "src/app/cluster/map/map-semaphore/map-semaphore.component.spec.ts",
+        "hash": "3243329409652127998"
+      },
+      {
+        "file": "src/app/cluster/map/map-semaphore/map-semaphore.component.ts",
+        "hash": "15028939186997528524"
+      },
+      {
+        "file": "src/app/cluster/map/map.component.css",
+        "hash": "2199320114100101413"
+      },
+      {
+        "file": "src/app/cluster/map/map.component.html",
+        "hash": "8651843220328343140"
+      },
+      {
+        "file": "src/app/cluster/map/map.component.spec.ts",
+        "hash": "2867239930979284804"
+      },
+      {
+        "file": "src/app/cluster/map/map.component.ts",
+        "hash": "16284538499597035570"
+      },
+      {
+        "file": "src/app/cluster/record/record.component.css",
+        "hash": "14917731660023144282"
+      },
+      {
+        "file": "src/app/cluster/record/record.component.html",
+        "hash": "2655119273126773422"
+      },
+      {
+        "file": "src/app/cluster/record/record.component.spec.ts",
+        "hash": "17110896030419732135"
+      },
+      {
+        "file": "src/app/cluster/record/record.component.ts",
+        "hash": "8803528061476655524"
+      },
+      {
+        "file": "src/app/cluster/side-marker/side-marker.component.css",
+        "hash": "5553591384353198297"
+      },
+      {
+        "file": "src/app/cluster/side-marker/side-marker.component.html",
+        "hash": "523861872971758513"
+      },
+      {
+        "file": "src/app/cluster/side-marker/side-marker.component.spec.ts",
+        "hash": "1124057977239403322"
+      },
+      {
+        "file": "src/app/cluster/side-marker/side-marker.component.ts",
+        "hash": "7402400647091268008"
+      },
+      {
+        "file": "src/app/cluster/speedometer/speedometer.component.css",
+        "hash": "6978428615557514813"
+      },
+      {
+        "file": "src/app/cluster/speedometer/speedometer.component.html",
+        "hash": "4644639167850805178"
+      },
+      {
+        "file": "src/app/cluster/speedometer/speedometer.component.spec.ts",
+        "hash": "2457349309968713479"
+      },
+      {
+        "file": "src/app/cluster/speedometer/speedometer.component.ts",
+        "hash": "10370474590738804217"
+      },
+      {
+        "file": "src/app/cluster/state-switch/state-switch.component.css",
+        "hash": "5868398466273657697"
+      },
+      {
+        "file": "src/app/cluster/state-switch/state-switch.component.html",
+        "hash": "6250509170231226405"
+      },
+      {
+        "file": "src/app/cluster/state-switch/state-switch.component.spec.ts",
+        "hash": "6476626316619081862"
+      },
+      {
+        "file": "src/app/cluster/state-switch/state-switch.component.ts",
+        "hash": "1160716939307328270"
+      },
+      {
+        "file": "src/app/cluster/steering/steering.component.css",
+        "hash": "4110343277969199711"
+      },
+      {
+        "file": "src/app/cluster/steering/steering.component.html",
+        "hash": "4371135270451744341"
+      },
+      {
+        "file": "src/app/cluster/steering/steering.component.spec.ts",
+        "hash": "2231777878982209883"
+      },
+      {
+        "file": "src/app/cluster/steering/steering.component.ts",
+        "hash": "13319834220945754839"
+      },
+      {
+        "file": "src/app/cluster/time-speed-steer/time-speed-steer.component.css",
+        "hash": "7432912105076977099"
+      },
+      {
+        "file": "src/app/cluster/time-speed-steer/time-speed-steer.component.html",
+        "hash": "14740731333571621730"
+      },
+      {
+        "file": "src/app/cluster/time-speed-steer/time-speed-steer.component.spec.ts",
+        "hash": "5371077603311790702"
+      },
+      {
+        "file": "src/app/cluster/time-speed-steer/time-speed-steer.component.ts",
+        "hash": "6601030985381442693"
+      },
+      {
+        "file": "src/app/cluster/warning-light/warning-light.component.css",
+        "hash": "9351995351408096750"
+      },
+      {
+        "file": "src/app/cluster/warning-light/warning-light.component.html",
+        "hash": "10970410525317288886"
+      },
+      {
+        "file": "src/app/cluster/warning-light/warning-light.component.spec.ts",
+        "hash": "7319909967454612819"
+      },
+      {
+        "file": "src/app/cluster/warning-light/warning-light.component.ts",
+        "hash": "9510902452501387412"
+      },
+      {
+        "file": "src/app/cluster/warning-light/warningLightDictionary.ts",
+        "hash": "10033647518639992225"
+      },
+      {
+        "file": "src/app/navbar/navbar.component.css",
+        "hash": "13455952638178474113"
+      },
+      {
+        "file": "src/app/navbar/navbar.component.html",
+        "hash": "5125873891863990613"
+      },
+      {
+        "file": "src/app/navbar/navbar.component.spec.ts",
+        "hash": "14913797552671527316"
+      },
+      {
+        "file": "src/app/navbar/navbar.component.ts",
+        "hash": "6004645808254979140"
+      },
+      {
+        "file": "src/app/settings/calibration/calibration-steps.data.ts",
+        "hash": "4891319432565218554"
+      },
+      {
+        "file": "src/app/settings/calibration/calibration.component.css",
+        "hash": "15256898337326216963"
+      },
+      {
+        "file": "src/app/settings/calibration/calibration.component.html",
+        "hash": "6732670935713152343"
+      },
+      {
+        "file": "src/app/settings/calibration/calibration.component.ts",
+        "hash": "8644059969641631832"
+      },
+      {
+        "file": "src/app/settings/settings.component.css",
+        "hash": "8222810606314658145"
+      },
+      {
+        "file": "src/app/settings/settings.component.html",
+        "hash": "18422152503921987429"
+      },
+      {
+        "file": "src/app/settings/settings.component.ts",
+        "hash": "16642609154831097701"
+      },
+      {
+        "file": "src/app/table/table.component.css",
+        "hash": "3096314695081595777"
+      },
+      {
+        "file": "src/app/table/table.component.html",
+        "hash": "10549839441083241055"
+      },
+      {
+        "file": "src/app/table/table.component.spec.ts",
+        "hash": "1843314851853745751"
+      },
+      {
+        "file": "src/app/table/table.component.ts",
+        "hash": "14008918263203283783"
+      },
+      {
+        "file": "src/app/webSocket/web-socket.service.spec.ts",
+        "hash": "7248612990898427796"
+      },
+      {
+        "file": "src/app/webSocket/web-socket.service.ts",
+        "hash": "10481566520939224392"
+      },
+      {
+        "file": "src/assets/Car.svg",
+        "hash": "7644537849723919711"
+      },
+      {
+        "file": "src/assets/Track.svg",
+        "hash": "12232551304658656140"
+      },
+      {
+        "file": "src/assets/TrackGGno.svg",
+        "hash": "823390165356155212"
+      },
+      {
+        "file": "src/assets/all-colors-light.svg",
+        "hash": "5784765869667037687"
+      },
+      {
+        "file": "src/assets/bfmc.png",
+        "hash": "2788906468783872919"
+      },
+      {
+        "file": "src/assets/calibration/measurements_backwards.svg",
+        "hash": "15182352287492079413"
+      },
+      {
+        "file": "src/assets/calibration/measurements_left.svg",
+        "hash": "17232378265626010678"
+      },
+      {
+        "file": "src/assets/calibration/measurements_right.svg",
+        "hash": "14370700163618606012"
+      },
+      {
+        "file": "src/assets/calibration/placement_backwards.svg",
+        "hash": "5778058661338938079"
+      },
+      {
+        "file": "src/assets/calibration/placement_left.svg",
+        "hash": "15385794158485161522"
+      },
+      {
+        "file": "src/assets/calibration/placement_right.svg",
+        "hash": "5129143947580845918"
+      },
+      {
+        "file": "src/assets/calibration/track.svg",
+        "hash": "16645147356950923213"
+      },
+      {
+        "file": "src/assets/green-light.svg",
+        "hash": "2351353571401598613"
+      },
+      {
+        "file": "src/assets/logo-nv.png",
+        "hash": "11847656436840821108"
+      },
+      {
+        "file": "src/assets/red-light.svg",
+        "hash": "5585075896502929062"
+      },
+      {
+        "file": "src/assets/warningLights/bumpy_road.png",
+        "hash": "17971611960284558590"
+      },
+      {
+        "file": "src/assets/warningLights/car_ahead.png",
+        "hash": "5847948498306719872"
+      },
+      {
+        "file": "src/assets/warningLights/car_parking.png",
+        "hash": "4189135914449291960"
+      },
+      {
+        "file": "src/assets/warningLights/crosswalk.png",
+        "hash": "16655754457941107055"
+      },
+      {
+        "file": "src/assets/warningLights/forbidden.png",
+        "hash": "8830658779655535846"
+      },
+      {
+        "file": "src/assets/warningLights/highway_entrance.png",
+        "hash": "1979610647334235759"
+      },
+      {
+        "file": "src/assets/warningLights/highway_exit.png",
+        "hash": "16925278514656903795"
+      },
+      {
+        "file": "src/assets/warningLights/intersection.png",
+        "hash": "2770962538442033372"
+      },
+      {
+        "file": "src/assets/warningLights/oneway.png",
+        "hash": "16068248788572340657"
+      },
+      {
+        "file": "src/assets/warningLights/parking.png",
+        "hash": "17836146700408167367"
+      },
+      {
+        "file": "src/assets/warningLights/ped_on_crosswalk.png",
+        "hash": "16661595812476374329"
+      },
+      {
+        "file": "src/assets/warningLights/ped_on_road.png",
+        "hash": "7361416410139513895"
+      },
+      {
+        "file": "src/assets/warningLights/priority.png",
+        "hash": "17441036995568381559"
+      },
+      {
+        "file": "src/assets/warningLights/road_block.png",
+        "hash": "7003276744504791787"
+      },
+      {
+        "file": "src/assets/warningLights/roundabout.png",
+        "hash": "3626351132675365096"
+      },
+      {
+        "file": "src/assets/warningLights/speed_limit_15_in.png",
+        "hash": "5653958427158922854"
+      },
+      {
+        "file": "src/assets/warningLights/speed_limit_15_out.png",
+        "hash": "17565917809472668863"
+      },
+      {
+        "file": "src/assets/warningLights/speed_limit_30_in.png",
+        "hash": "3787581822705406617"
+      },
+      {
+        "file": "src/assets/warningLights/speed_limit_30_out.png",
+        "hash": "8963771223685967917"
+      },
+      {
+        "file": "src/assets/warningLights/stop.png",
+        "hash": "5913272601781334456"
+      },
+      {
+        "file": "src/assets/warningLights/traffic_light.png",
+        "hash": "1016667921836903353"
+      },
+      {
+        "file": "src/assets/yellow-light.svg",
+        "hash": "759112668585611787"
+      },
+      {
+        "file": "src/favicon.ico",
+        "hash": "3988961587069885523"
+      },
+      {
+        "file": "src/index.html",
+        "hash": "16994253299774708902"
+      },
+      {
+        "file": "src/main.ts",
+        "hash": "4927504514031276065"
+      },
+      {
+        "file": "src/styles.css",
+        "hash": "3266668471265959066"
+      },
+      {
+        "file": "tsconfig.app.json",
+        "hash": "17337579397915052279"
+      },
+      {
+        "file": "tsconfig.json",
+        "hash": "14194748643066788069"
+      },
+      {
+        "file": "tsconfig.spec.json",
+        "hash": "15575553540147145788"
+      }
+    ]
+  },
+  "externalNodesHash": "16656170545926039328"
+}

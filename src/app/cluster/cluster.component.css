@@ -31,7 +31,6 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. */
     flex-direction: column;
     width: 100%;
     height: 100%;
-    border: 0.1vw solid gray;
 }
 
 .cluster-instruments { 

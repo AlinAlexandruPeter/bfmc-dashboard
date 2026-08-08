@@ -43,7 +43,16 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. -->
 -->
 
 <!-- The actual content that will be shown only after correct password -->
+<div class="global-background">
+  <om-flickering-grid 
+    [squareSize]="8"
+    [gridGap]="8"
+  ></om-flickering-grid>
+</div>
+
 <div class="main-container">
+  <app-navbar></app-navbar>
+
   <!-- Alert Modal -->
   <div *ngIf="showAlert" class="alert-modal">
     <div class="alert-modal-content">
@@ -54,8 +63,13 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. -->
   </div>
   <!-- Cluster -->
   <div class="cluster-container">
-    <app-cluster class="cluster" [cursorRotation]="cursorRotationSliderValue" [carPosition]="carPositionSliderValue"
-      [carLeftLaneOn]="carLeftLaneOn" [carRightLaneOn]="carRightLaneOn"></app-cluster>
+    <app-cluster 
+      class="cluster" 
+      [cursorRotation]="cursorRotationSliderValue" 
+      [carPosition]="carPositionSliderValue"
+      [carLeftLaneOn]="carLeftLaneOn" 
+      [carRightLaneOn]="carRightLaneOn"
+    ></app-cluster>
 
     <!-- Settings gear button overlayed in top-right of cluster (offline unicode icon ⚙) -->
     <button class="settings-gear" (click)="openSettings()" aria-label="Open settings">⚙</button>
