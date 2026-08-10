@@ -27,32 +27,29 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 import { Component, HostListener, ViewChild, OnDestroy } from '@angular/core';
-import { ClusterComponent } from './cluster/cluster.component';
+import { RouterOutlet } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { WebSocketService } from './webSocket/web-socket.service';
-import { TableComponent } from './table/table.component';
 import { StateSwitchComponent } from './cluster/state-switch/state-switch.component';
-import { SettingsComponent } from './settings/settings.component';
 import { CommonModule } from '@angular/common'
 import * as CryptoJS from 'crypto-js';
 import { ClusterService } from './cluster/cluster.service';
 
-import { NgxFlickeringGridComponent } from '@omnedia/ngx-flickering-grid';
-import { NavbarComponent } from "./navbar/navbar.component";
+import { HeaderComponent } from "./header/header.component";
+import { SidebarComponent } from './sidebar/sidebar.component';
+
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [
-    TableComponent,
-    ClusterComponent,
     StateSwitchComponent,
-    SettingsComponent,
     FormsModule,
     CommonModule,
-    NgxFlickeringGridComponent,
-    NavbarComponent
+    HeaderComponent,
+    SidebarComponent,
+    RouterOutlet
 ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
@@ -92,8 +89,6 @@ export class AppComponent implements OnDestroy {
   private connectionCheckInterval: any;
   private autoReconnectInterval: any;
   private currentSerialConnectionStateSubscription: Subscription | undefined;
-  @ViewChild(ClusterComponent) clusterComponent!: ClusterComponent;
-  @ViewChild(TableComponent) tableComponent!: TableComponent;
   @ViewChild('stateSwitch') stateSwitchComponent!: StateSwitchComponent;
 
   constructor(private webSocketService: WebSocketService, private clusterService: ClusterService) { }

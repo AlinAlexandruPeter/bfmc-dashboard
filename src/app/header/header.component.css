@@ -1,0 +1,57 @@
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding-block: 1rem;
+}
+
+.header-left,
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.header-logo {
+  display: flex;
+  align-items: center;
+  font-size: x-large;
+  gap: 0.5rem;
+}
+
+.header-logo h1:first-of-type {
+  color: #357ee7;
+}
+
+.badges-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.connection-badge {
+  color: #37aa31;
+  background-color: rgba(55, 170, 49, 0.3);
+  border-radius: 10px;
+  padding: 1rem 0.75rem;
+  padding-left: 0;
+  font-size: medium;
+  font-family: sans-serif;
+  font-weight: 400;
+}
+
+.simulator-badge {
+  color: #357ee7;
+  background-color: rgba(53, 126, 231, 0.3);
+  border-radius: 10px;
+  padding: 1rem 0.75rem;
+  font-size: medium;
+  font-family: sans-serif;
+  font-weight: 400;
+}
+
+.clock {
+  font-size: large;
+  font-family: sans-serif;
+  opacity: 60%;
+}

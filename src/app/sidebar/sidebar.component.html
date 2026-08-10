@@ -1,0 +1,18 @@
+<nav class="sidebar-wrapper">
+  <div class="sidebar">
+    @for (item of navItems; track item.route) {
+      <a 
+        [routerLink]="item.route" 
+        routerLinkActive="bg-[#2e7cfe] pointer-events-none"
+        [routerLinkActiveOptions]="{ exact: true }"
+        class='sidebar-link'
+      >
+        <ng-icon [name]="item.icon" size="30"></ng-icon>
+      </a>
+    }
+
+    <button hlmBtn class="settings-btn">
+      <ng-icon name="tablerSettings" size="30"></ng-icon>
+    </button>
+  </div>
+</nav>
