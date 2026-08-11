@@ -1,0 +1,26 @@
+.cameras {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  gap: 1rem;
+}
+
+.front-camera,
+.rear-camera {
+  width: 100%;
+  height: 100%;
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+}
+
+.front-camera div,
+.rear-camera div {
+  width: 100%;
+  aspect-ratio: 16/9;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-block: auto;
+}

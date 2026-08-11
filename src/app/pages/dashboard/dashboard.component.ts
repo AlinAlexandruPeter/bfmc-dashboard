@@ -6,19 +6,9 @@ import { SettingsComponent } from '../../settings/settings.component';
 import { BentoComponent } from './bento/bento.component';
 import { HlmButton } from '@spartan-ng/helm/button';
 import { NgIcon, provideIcons } from '@ng-icons/core';
-import { 
-  consumedMahOptions, 
-  speedOptions, 
-  steeringAngleOptions, 
-  throttleOptions 
-} from './charts.options';
-import { 
-  tablerHandFinger, 
-  tablerHourglassEmpty, 
-  tablerOlympicTorch, 
-  tablerSteeringWheel, 
-} from '@ng-icons/tabler-icons';
-import type { EChartsOption } from 'echarts';
+import { ChartsComponent } from "./charts/charts.component";
+import { TelemetryComponent } from "./telemetry/telemetry.component";
+import { CamerasComponent } from "./cameras/cameras.component";
 
 @Component({
   selector: 'app-dashboard',
@@ -29,16 +19,13 @@ import type { EChartsOption } from 'echarts';
     NgxEchartsDirective,
     BentoComponent,
     HlmButton,
-    NgIcon
-  ],
+    NgIcon,
+    ChartsComponent,
+    TelemetryComponent,
+    CamerasComponent
+],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css',
-  viewProviders: [provideIcons({ 
-    tablerHourglassEmpty,
-    tablerHandFinger,
-    tablerOlympicTorch,
-    tablerSteeringWheel
-  })]
 })
 export class DashboardComponent {
   showAlert: boolean = false;
@@ -50,11 +37,6 @@ export class DashboardComponent {
   carRightLaneOn: boolean = false;
 
   private alertInterval: any;
-
-  speedOptions: EChartsOption = speedOptions;
-  steeringAngleOptions: EChartsOption = steeringAngleOptions;
-  throttleOptions: EChartsOption = throttleOptions;
-  consumedMahOptions: EChartsOption = consumedMahOptions;
 
   @ViewChild(ClusterComponent) clusterComponent!: ClusterComponent;
   @ViewChild(TableComponent) tableComponent!: TableComponent;

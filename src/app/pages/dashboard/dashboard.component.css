@@ -95,28 +95,23 @@
   height: 100%;
 }
 
-.first-row {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 1.5rem;
-}
-
-.driving-mode {
+.dashboard-wrapper {
   display: flex;
-  flex: 1;
   flex-direction: column;
-  gap: 5rem;
+  width: 100%;
+  height: 100%;
+  gap: 1rem;
 }
 
-.driving-mode [hlmBtn] {
-  cursor: pointer;
-  min-width: 8rem;
-  padding-inline: 0.75rem 2rem;
-  padding-block: 1.5rem;
-  background-color: #17202D;
-  font-size: larger;
-  text-align: left;
-  justify-content: left;
+.charts-cameras-container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 1rem;
+}
+
+.charts-cameras-container > * {
+  flex: 1;
 }
 
 @media (max-width: 768px) {

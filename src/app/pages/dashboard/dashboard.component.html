@@ -1,40 +1,12 @@
-<div class="first-row">
-  <app-bento bentoTitle="Speed">
-    <div echarts [options]="speedOptions" class="w-64 h-64"></div>
-  </app-bento>
-  <app-bento bentoTitle="Steering Angle">
-    <div echarts [options]="steeringAngleOptions" class="w-64 h-64"></div>
-  </app-bento>
-  <app-bento bentoTitle="Throttle Pedal">
-    <div echarts [options]="throttleOptions" class="w-64 h-64"></div>
-  </app-bento>
-  <app-bento bentoTitle="Consumed mAh">
-    <div echarts [options]="consumedMahOptions" class="w-64 h-64"></div>
-  </app-bento>
-
-  <app-bento 
-    bentoTitle="Driving Mode" 
-    class="driving-mode ml-auto "
-    className='flex flex-col w-full h-full justify-around pb-4!'
-  >
-    <button hlmBtn>
-      <ng-icon name="tablerHourglassEmpty" size="30"></ng-icon>
-      Stop
-    </button>
-    <button hlmBtn>
-      <ng-icon name="tablerHandFinger" size="30"></ng-icon>
-      Manual
-    </button>
-    <button hlmBtn>
-      <ng-icon name="tablerOlympicTorch" size="30"></ng-icon>
-      Legacy
-    </button>
-    <button hlmBtn>
-      <ng-icon name="tablerSteeringWheel" size="30"></ng-icon>
-      Auto
-    </button>
-  </app-bento>
+<div class="dashboard-wrapper">
+  <app-telemetry></app-telemetry>
+  <div class="charts-cameras-container">
+    <app-charts></app-charts>
+    <app-cameras class="h-full"></app-cameras>
+  </div>
+  <div>lol</div>
 </div>
+
 
 <!-- Alert Modal -->
 <div *ngIf="showAlert" class="alert-modal">

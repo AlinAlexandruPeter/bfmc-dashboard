@@ -1,3 +1,4 @@
+// charts & telemetry options
 import type { EChartsOption } from 'echarts';
 
 export const speedOptions: EChartsOption = {
@@ -253,5 +254,148 @@ export const consumedMahOptions: EChartsOption = {
       // The actual speed value
       data: [{ value: 1.23 }]
     }
+  ]
+};
+
+export const raspberryPiOptions: EChartsOption = {
+  // 1. The Line Colors (Blue, Purple, Green)
+  color: ['#3b82f6', '#a855f7', '#22c55e'],
+  
+  // 2. The Hover Tooltip
+  tooltip: {
+    trigger: 'axis',
+    backgroundColor: '#18181b', // zinc-900
+    borderColor: '#27272a',     // zinc-800
+    textStyle: { color: '#e4e4e7' }
+  },
+  
+  // 3. The Legend (Top Center)
+  legend: {
+    data: ['Temperature (°C)', 'CPU Usage (%)', 'ROM Usage (%)'],
+    icon: 'circle',
+    textStyle: { color: '#9ca3af' }, // gray-400
+    top: 0
+  },
+  
+  // 4. Grid Spacing (Controls how much room the chart takes up)
+  grid: {
+    left: '2%',
+    right: '2%',
+    bottom: '0%',
+    top: 40,
+    containLabel: true
+  },
+  
+  // 5. The X-Axis (Timestamps)
+  xAxis: {
+    type: 'category',
+    boundaryGap: false,
+    data: ['12:40:30', '12:41:30', '12:42:30', '12:43:30', '12:44:30', '12:45:30'],
+    axisLabel: { color: '#9ca3af' },
+    axisLine: { lineStyle: { color: '#3f3f46' } } // zinc-700
+  },
+  
+  // 6. The Y-Axis (0 to 100)
+  yAxis: {
+    type: 'value',
+    min: 0,
+    max: 100,
+    axisLabel: { color: '#9ca3af' },
+    splitLine: { 
+      lineStyle: { color: '#27272a' } // Very faint horizontal grid lines
+    }
+  },
+  
+  // 7. The Actual Data Lines
+  series: [
+    {
+      name: 'Temperature (°C)',
+      type: 'line',
+      smooth: false,      // Makes the line curved instead of jagged
+      showSymbol: false, // Hides the dots on the line
+      data: [68, 75, 72, 60, 70, 72]
+    },
+    {
+      name: 'CPU Usage (%)',
+      type: 'line',
+      smooth: true,
+      showSymbol: false,
+      data: [22, 28, 24, 20, 25, 22]
+    },
+    {
+      name: 'ROM Usage (%)',
+      type: 'line',
+      smooth: true,
+      showSymbol: false,
+      data: [45, 52, 48, 42, 50, 48]
+    }
+  ]
+};
+
+export const nanoOptions: EChartsOption = {
+  // 1. The Line Colors (Blue, Purple, Green)
+  color: ['#3b82f6', '#a855f7'],
+  
+  // 2. The Hover Tooltip
+  tooltip: {
+    trigger: 'axis',
+    backgroundColor: '#18181b', // zinc-900
+    borderColor: '#27272a',     // zinc-800
+    textStyle: { color: '#e4e4e7' }
+  },
+  
+  // 3. The Legend (Top Center)
+  legend: {
+    data: ['Heap (%)', 'Stack (%)'],
+    icon: 'circle',
+    textStyle: { color: '#9ca3af' }, // gray-400
+    top: 0
+  },
+  
+  // 4. Grid Spacing (Controls how much room the chart takes up)
+  grid: {
+    left: '2%',
+    right: '2%',
+    bottom: '0%',
+    top: 40,
+    containLabel: true
+  },
+  
+  // 5. The X-Axis (Timestamps)
+  xAxis: {
+    type: 'category',
+    boundaryGap: false,
+    data: ['12:40:30', '12:41:30', '12:42:30', '12:43:30', '12:44:30', '12:45:30'],
+    axisLabel: { color: '#9ca3af' },
+    axisLine: { lineStyle: { color: '#3f3f46' } } // zinc-700
+  },
+  
+  // 6. The Y-Axis (0 to 100)
+  yAxis: {
+    type: 'value',
+    min: 0,
+    max: 100,
+    axisLabel: { color: '#9ca3af' },
+    splitLine: { 
+      lineStyle: { color: '#27272a' } // Very faint horizontal grid lines
+    }
+  },
+  
+  // 7. The Actual Data Lines
+  series: [
+    {
+      name: 'Heap (%)',
+      type: 'line',
+      smooth: false,      // Makes the line curved instead of jagged
+      showSymbol: false, // Hides the dots on the line
+      data: [72, 82, 73, 60, 50, 78]
+    },
+    {
+      name: 'Stack (%)',
+      type: 'line',
+      smooth: true,
+      showSymbol: false,
+      data: [28, 14, 24, 20, 35, 32]
+    },
   ]
 };

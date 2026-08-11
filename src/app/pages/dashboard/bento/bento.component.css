@@ -1,8 +1,11 @@
 .bento-el {
   background-color: #08101c;
   border-radius: 10px;
-  padding: 1.5rem;
+  padding: 1rem;
   padding-bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .bento-title {
@@ -10,8 +13,6 @@
   font-size: large;
   font-weight: 400;
   font-family: sans-serif;
-}
-
-.bento-el [hlmButton] {
-  transform: rotate(90deg);
+  width: 100%;
+  text-align: left;
 }
