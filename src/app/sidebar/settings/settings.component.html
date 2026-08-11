@@ -12,13 +12,12 @@
       <p hlmDialogDescription>Speed and Steer Calibration</p>
     </hlm-dialog-header>
 
-    <div class="dialog-steps flex-1 py-4">
+    <div class="dialog-steps">
       @switch (currentStep()) {
         
         @case (0) {
-          <!-- Intro Screen -->
-          <p class="mb-4">Speed and steer calibration helps ensure accurate vehicle control and movement precision.</p>
-          <ul class="list-disc pl-5 space-y-2 text-zinc-400">
+          <p>Speed and steer calibration helps ensure accurate vehicle control and movement precision.</p>
+          <ul>
             <li>Step-by-step guided process</li>
             <li>Visual instructions with diagrams</li>
             <li>Configurable parameters</li>
@@ -27,7 +26,6 @@
         }
 
         @case (1) {
-          <!-- Step 1 -->
           <div class="animate-in fade-in slide-in-from-right-4 duration-300">
             <h4 class="text-lg font-bold mb-2">Step 1: Calibrate Steering</h4>
             <p>Set the wheels straight and click next.</p>
@@ -53,6 +51,62 @@
         }
       }
     </div>
+
+    <p-stepper [value]="1">
+      <p-step-list>
+          <p-step [value]="1">Track</p-step>
+          <p-step [value]="2">Calibration</p-step>
+          <p-step [value]="3">Test Run</p-step>
+          <p-step [value]="4">Visualization</p-step>
+          <p-step [value]="5">Save New Calibration</p-step>
+      </p-step-list>
+      <p-step-panels>
+        <p-step-panel [value]="1">
+          <ng-template #content let-activateCallback="activateCallback">
+            <div class="step-content">
+              <img src="../../../assets/calibration/track.svg" />
+              <p-card class="step-content-text">
+                Lay out a straight line with a minimum length 
+                of 3 meters. Ensure there is at least 3 meters of 
+                unobstructed space on the side where the vehicle 
+                will be calibrated.
+              </p-card>
+            </div>
+            <div class="next-btn">
+              <button 
+                type="button" 
+                pButton 
+                (click)="activateCallback(2)"
+              >
+                Next
+                <ng-icon name="tablerArrowNarrowRight" size="20"></ng-icon>
+              </button>
+            </div>
+          </ng-template>
+        </p-step-panel>
+          <p-step-panel [value]="2">
+            <ng-template #content let-activateCallback="activateCallback">
+              <div class="flex flex-col h-48">
+                <div class="border-2 border-dashed border-surface-200 dark:border-surface-700 rounded-sm bg-surface-50 dark:bg-surface-950 flex-auto flex justify-center items-center font-medium text-sm">Content II</div>
+              </div>
+              <div class="flex pt-5 justify-between">
+                <button type="button" pButton severity="secondary" (click)="activateCallback(1)"><i class="pi pi-arrow-left"></i> Back</button>
+                <button type="button" pButton (click)="activateCallback(3)">Next <i class="pi pi-arrow-right"></i></button>
+              </div>
+            </ng-template>
+          </p-step-panel>
+          <p-step-panel [value]="3">
+            <ng-template #content let-activateCallback="activateCallback">
+              <div class="flex flex-col h-48">
+                <div class="border-2 border-dashed border-surface-200 dark:border-surface-700 rounded-sm bg-surface-50 dark:bg-surface-950 flex-auto flex justify-center items-center font-medium text-sm">Content III</div>
+              </div>
+              <div class="flex pt-5 justify-start">
+                <button type="button" pButton severity="secondary" (click)="activateCallback(2)"><i class="pi pi-arrow-left"></i> Back</button>
+              </div>
+            </ng-template>
+          </p-step-panel>
+      </p-step-panels>
+    </p-stepper>
     <!-- <div class="dialog-steps">
       <p>Speed and steer calibration helps ensure accurate vehicle control and movement precision.</p>
       <ul>
@@ -62,24 +116,5 @@
         <li>Validation and testing</li>
       </ul>
     </div> -->
-
-    <hlm-dialog-footer class="dialog-footer mt-auto flex justify-between">
-      @if (currentStep() === 0) {
-        <button hlmBtn variant="outline" hlmDialogClose>Close</button>
-      } @else {
-        <button hlmBtn variant="outline" (click)="prevStep()">Back</button>
-      }
-
-      <button hlmBtn (click)="nextStep(ctx)">
-        @if (currentStep() === 0) {
-          Start Calibration
-        } @else if (currentStep() < totalSteps) {
-          Next
-        } @else {
-          Finish
-        }
-      </button>
-
-    </hlm-dialog-footer>
   </hlm-dialog-content>
 </hlm-dialog>

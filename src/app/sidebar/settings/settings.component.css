@@ -63,3 +63,31 @@
   font-size: larger;
   padding: 1.25rem !important;
 }
+
+.step-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.step-content img {
+  max-width: 30%;
+}
+
+.step-content-text {
+  height: 100%;
+  flex: 1;
+}
+
+.next-btn button {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  background-color: white;
+  color: #2d363a;
+  padding: 0.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 2rem;
+  margin-left: auto;
+}

@@ -1,18 +1,28 @@
 import { Component, signal } from '@angular/core';
 import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmDialogImports } from '@spartan-ng/helm/dialog';
+import { StepperModule } from 'primeng/stepper';
+import { CardModule } from 'primeng/card';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import {
-  tablerSettings
+  tablerSettings,
+  tablerArrowNarrowRight
 } from '@ng-icons/tabler-icons';
 
 @Component({
   selector: 'app-settings',
-  imports: [NgIcon, HlmDialogImports, HlmButtonImports],
+  imports: [
+    NgIcon, 
+    HlmDialogImports, 
+    HlmButtonImports,
+    StepperModule,
+    CardModule
+  ],
   templateUrl: './settings.component.html',
   styleUrl: './settings.component.css',
   viewProviders: [provideIcons({ 
-    tablerSettings 
+    tablerSettings,
+    tablerArrowNarrowRight
   })]
 })
 export class SettingsComponent {
