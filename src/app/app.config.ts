@@ -4,6 +4,9 @@ import { providePrimeNG } from 'primeng/config';
 import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
 import Aura from '@primeuix/themes/aura';
+import { provideEchartsCore } from 'ngx-echarts'; 
+// 2. Import the full echarts library 
+import * as echarts from 'echarts';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -15,6 +18,7 @@ export const appConfig: ApplicationConfig = {
         preset: Aura,
       },
       license: 'eyJpZCI6ImMyYTkyMTc1LTM4NzgtNDAyMS1hOTk5LTJkNDUwYmZiNTFjOCIsInByb2R1Y3QiOiJwcmltZXVpIiwidGllciI6ImNvbW11bml0eSIsInR5cGUiOiJkZXYiLCJpYXQiOjE3ODY0MDUxODcsImV4cCI6MTgxNzk0MTE4N30.y9V-_LJS4Gnht8iz4uIn2bBzGNWTzHJZrTpvgP-oCbaFkUl--_qqphZPkeajh-bzw9_xMOke8TgR-dgO9BgeCQ'
-    })
+    }),
+    provideEchartsCore({ echarts }),
 ]
 };

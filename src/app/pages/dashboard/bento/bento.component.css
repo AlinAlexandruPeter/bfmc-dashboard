@@ -1,0 +1,17 @@
+.bento-el {
+  background-color: #08101c;
+  border-radius: 10px;
+  padding: 1.5rem;
+  padding-bottom: 0;
+}
+
+.bento-title {
+  opacity: 75%;
+  font-size: large;
+  font-weight: 400;
+  font-family: sans-serif;
+}
+
+.bento-el [hlmButton] {
+  transform: rotate(90deg);
+}

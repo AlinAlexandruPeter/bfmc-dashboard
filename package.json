@@ -34,6 +34,8 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "crypto-js": "^4.2.0",
+    "echarts": "^6.1.0",
+    "ngx-echarts": "^22.0.0",
     "ngx-socket-io": "^4.7.0",
     "postcss": "^8.5.26",
     "primeng": "^22.0.0",
