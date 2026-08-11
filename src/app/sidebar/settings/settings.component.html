@@ -1,0 +1,85 @@
+<hlm-dialog class="settings-dialog">
+  <button 
+    hlmDialogTrigger 
+    hlmBtn 
+    class="settings-btn"
+  >
+    <ng-icon name="tablerSettings" size="30"></ng-icon>
+  </button>
+  <hlm-dialog-content *hlmDialogPortal="let ctx" class="dialog-content">
+    <hlm-dialog-header>
+      <h3 hlmDialogTitle>Settings</h3>
+      <p hlmDialogDescription>Speed and Steer Calibration</p>
+    </hlm-dialog-header>
+
+    <div class="dialog-steps flex-1 py-4">
+      @switch (currentStep()) {
+        
+        @case (0) {
+          <!-- Intro Screen -->
+          <p class="mb-4">Speed and steer calibration helps ensure accurate vehicle control and movement precision.</p>
+          <ul class="list-disc pl-5 space-y-2 text-zinc-400">
+            <li>Step-by-step guided process</li>
+            <li>Visual instructions with diagrams</li>
+            <li>Configurable parameters</li>
+            <li>Validation and testing</li>
+          </ul>
+        }
+
+        @case (1) {
+          <!-- Step 1 -->
+          <div class="animate-in fade-in slide-in-from-right-4 duration-300">
+            <h4 class="text-lg font-bold mb-2">Step 1: Calibrate Steering</h4>
+            <p>Set the wheels straight and click next.</p>
+            <!-- Add your sliders or inputs here -->
+          </div>
+        }
+
+        @case (2) {
+          <!-- Step 2 -->
+          <div class="animate-in fade-in slide-in-from-right-4 duration-300">
+            <h4 class="text-lg font-bold mb-2">Step 2: Speed Limits</h4>
+            <p>Configure the minimum and maximum motor outputs.</p>
+            <!-- Add your sliders or inputs here -->
+          </div>
+        }
+
+        @case (3) {
+          <!-- Final Step -->
+          <div class="animate-in fade-in slide-in-from-right-4 duration-300">
+            <h4 class="text-lg font-bold mb-2">Step 3: Verification</h4>
+            <p>Review your settings before deploying to the vehicle.</p>
+          </div>
+        }
+      }
+    </div>
+    <!-- <div class="dialog-steps">
+      <p>Speed and steer calibration helps ensure accurate vehicle control and movement precision.</p>
+      <ul>
+        <li>Step-by-step guided process</li>
+        <li>Visual instructions with diagrams</li>
+        <li>Configurable parameters</li>
+        <li>Validation and testing</li>
+      </ul>
+    </div> -->
+
+    <hlm-dialog-footer class="dialog-footer mt-auto flex justify-between">
+      @if (currentStep() === 0) {
+        <button hlmBtn variant="outline" hlmDialogClose>Close</button>
+      } @else {
+        <button hlmBtn variant="outline" (click)="prevStep()">Back</button>
+      }
+
+      <button hlmBtn (click)="nextStep(ctx)">
+        @if (currentStep() === 0) {
+          Start Calibration
+        } @else if (currentStep() < totalSteps) {
+          Next
+        } @else {
+          Finish
+        }
+      </button>
+
+    </hlm-dialog-footer>
+  </hlm-dialog-content>
+</hlm-dialog>

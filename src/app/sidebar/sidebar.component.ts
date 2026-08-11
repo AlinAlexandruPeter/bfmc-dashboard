@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { HlmButtonImports } from '@spartan-ng/helm/button';
+import { HlmDialogImports } from '@spartan-ng/helm/dialog';
 import { 
   tablerLayoutDashboard, 
   tablerMap, 
@@ -9,6 +10,7 @@ import {
   tablerTerminal2,
   tablerSettings
 } from '@ng-icons/tabler-icons';
+import { SettingsComponent } from "./settings/settings.component";
 
 interface NavItem {
   route: string;
@@ -19,10 +21,12 @@ interface NavItem {
   selector: 'app-sidebar',
   imports: [
     NgIcon,
-    RouterLink, 
+    RouterLink,
     RouterLinkActive,
-    HlmButtonImports
-  ],
+    HlmButtonImports,
+    HlmDialogImports,
+    SettingsComponent
+],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.css',
   viewProviders: [provideIcons({ 

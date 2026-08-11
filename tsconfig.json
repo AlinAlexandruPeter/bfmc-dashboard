@@ -33,6 +33,9 @@
       ],
       "@app": [
         "./src/app"
+      ],
+      "@spartan-ng/helm/dialog": [
+        "./libs/ui/dialog/src/index.ts"
       ]
     }
   },

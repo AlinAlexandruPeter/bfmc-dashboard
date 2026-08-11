@@ -1,0 +1,65 @@
+.settings-dialog {
+  margin-top: auto;
+}
+
+.settings-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  border-radius: 4px;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid transparent;
+  background-color: transparent;
+  transition: all 0.2s ease-out;
+}
+
+.settings-btn:hover {
+  transform: scale(1.3);
+}
+
+.dialog-content {
+  min-width: 50vw;
+  background-color: #2d363a;
+}
+
+[hlmDialogTitle] {
+  font-size: xx-large;
+  color: white;
+}
+
+[hlmDialogDescription] {
+  font-size: x-large;
+  color: white;
+}
+
+.dialog-steps {
+  font-size: large;
+  color: white;
+  padding-inline: 2rem;
+  padding-block: 1rem;
+}
+
+.dialog-steps ul {
+  padding-inline: 2rem;
+  margin-top: 0.75rem;
+}
+
+.dialog-steps li {
+  list-style-type: disc;
+}
+
+.dialog-footer {
+  height: fit-content;
+  background-color: rgba(45, 54, 58, 0.7);
+}
+
+[hlmDialogClose] {
+  font-size: large;
+  padding: 1.2rem !important;
+}
+
+.dialog-footer button[type="submit"] {
+  font-size: larger;
+  padding: 1.25rem !important;
+}
