@@ -21,4 +21,9 @@
   text-align: left;
   justify-content: left;
   width: 100%;
+  transition: all 0.2s linear ease-out;
+}
+
+.driving-mode [hlmBtn]:hover {
+  background-color: #2f415b;
 }

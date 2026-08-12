@@ -9,10 +9,10 @@ import {
 } from '../charts.options';
 import { 
   tablerHandFinger, 
-  tablerHourglassEmpty, 
   tablerOlympicTorch, 
-  tablerSteeringWheel, 
+  tablerSteeringWheel,
 } from '@ng-icons/tabler-icons';
+import { faCirclePause } from '@ng-icons/font-awesome/regular';
 import type { EChartsOption } from 'echarts';
 import { HlmButton } from '@spartan-ng/helm/button';
 import { NgIcon, provideIcons } from '@ng-icons/core';
@@ -27,11 +27,11 @@ import { NgIcon, provideIcons } from '@ng-icons/core';
   ],
   templateUrl: './telemetry.component.html',
   styleUrl: './telemetry.component.css',
-  viewProviders: [provideIcons({ 
-    tablerHourglassEmpty,
+  viewProviders: [provideIcons({
     tablerHandFinger,
     tablerOlympicTorch,
-    tablerSteeringWheel
+    tablerSteeringWheel,
+    faCirclePause
   })]
 })
 export class TelemetryComponent {
