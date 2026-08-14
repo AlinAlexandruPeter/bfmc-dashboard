@@ -26,6 +26,7 @@ Environment variables:
   SIM_TELEMETRY_HZ=10    Speed, steer, pose and current update rate
   SIM_CAMERAS=1          Emit placeholder front/rear JPEG frames (0 disables)
   SIM_SEED=2027          Deterministic noise seed
+  SIM_LOGGER_HZ=5        Synthetic Python-style logger stream rate
 `);
   process.exit(0);
 }
@@ -35,6 +36,7 @@ const config = {
   port: positiveInt(process.env.SIM_PORT, 5005),
   physicsHz: 20,
   telemetryHz: clamp(positiveInt(process.env.SIM_TELEMETRY_HZ, 10), 1, 20),
+  loggerHz: clamp(positiveInt(process.env.SIM_LOGGER_HZ, 5), 1, 20),
   camerasEnabled: process.env.SIM_CAMERAS !== '0',
   maxSpeed: 500,
   maxSteer: 250,
@@ -74,6 +76,8 @@ const state = {
   previousSpeed: 0,
   warningIndex: 0,
   semaphoreStep: 0,
+  loggerIndex: 0,
+  loggerSequence: 0,
   calibration: { left: false, right: false, test_run: false, backward: false },
 };
 
@@ -82,6 +86,138 @@ const warningNames = [
   'speed_limit_30_in', 'parking', 'stop',
 ];
 const warningIds = [4, 8, 13, 15, 21, 18, 10, 20];
+
+
+// ---------------------------------------------------------------------------
+// Synthetic Python-style diagnostic loggers
+// ---------------------------------------------------------------------------
+// These are intentionally kept separate from telemetry. Angular can subscribe
+// to the single `logger` Socket.IO event for its terminal/recording page while
+// the existing CurrentSpeed, ImuData, BatteryLvl, etc. events remain telemetry.
+// The messages are synthetic for simulator use; when the real car is connected,
+// this stream can be replaced by the real Python logger output without changing
+// the Angular terminal contract.
+const loggerSources = [
+  'ControlUnit', 'CtrErrSpike', 'CW', 'CWRecovery', 'CurveAction',
+  'CurveDebug', 'CurveDegradedEnter', 'CurveDegradedExit',
+  'CurveDegradedPending', 'CurveDegradedStay', 'CurveDisabled',
+  'CurveEntry', 'CurveExit', 'CurveHold', 'CurveInvalid', 'CurveSteer',
+  'Dashboard', 'HailoYoloBackend', 'IMUDamp', 'IntersectionManeuver',
+  'IntersectionSafe', 'LocalYoloBackend', 'Localization',
+  'LocalizationInput', 'LocalizationLocationSample', 'NavGoal',
+  'NavProgress', 'NavReplan', 'NavReseed', 'NavRouteBlock', 'NavStartSeed',
+  'Navigation', 'ObstacleContext', 'Overtake', 'PathFollowerDBG',
+  'PedestrianStop', 'Perception', 'PFCheck', 'PFNode', 'PoseCheck',
+  'PoseData', 'PurePursuit', 'RoundaboutPath', 'RoundaboutSign', 'RunLog',
+  'SemaphoreBindings', 'SemaphoreRoute', 'SemaphoreV2X', 'Semaphores',
+  'ServerSemData', 'SignControl', 'SignDIAG', 'SignState', 'SpecialPath',
+  'StartGate', 'StartGateList', 'SteerDiag', 'StopConfirm', 'StopReject',
+  'StraightCtrl', 'TrafficCommBridge', 'VehicleInLane',
+];
+
+function emitLogger(level, source, message) {
+  state.loggerSequence += 1;
+  emitRaw('logger', {
+    timestamp: new Date().toISOString(),
+    timestampMs: Date.now(),
+    sequence: state.loggerSequence,
+    level,
+    source,
+    message,
+  });
+}
+
+function loggerLevelFor(source) {
+  if (source === 'Dashboard' && noise(1) > 0.65) return 'ERROR';
+  if (['HailoYoloBackend', 'NavGoal', 'NavReplan', 'NavRouteBlock',
+    'SemaphoreBindings', 'SemaphoreRoute', 'Semaphores', 'SignDIAG',
+    'StopReject'].includes(source) && noise(1) > 0.72) return 'WARNING';
+  if (source === 'LocalYoloBackend' && noise(1) > 0.85) return 'DEBUG';
+  return 'INFO';
+}
+
+function syntheticLoggerMessage(source) {
+  const speed = round(state.actualSpeed + noise(1.5), 1);
+  const steer = round(state.actualSteer + noise(0.8), 1);
+  const curveActive = Math.abs(state.actualSteer) > 80;
+  const yaw = round(state.pose.yawRad * 180 / Math.PI + noise(0.4), 2);
+  const cpu = round(24 + Math.abs(state.actualSpeed) / config.maxSpeed * 28 + noise(3), 1);
+  const battery = round(state.batteryPercent + noise(0.05), 1);
+  const semaphoreState = ['green', 'yellow', 'red'][state.semaphoreStep % 3];
+
+  switch (source) {
+    case 'ControlUnit': return `mode=${state.drivingMode} kl=${state.kl} speed=${speed} steer=${steer} braking=${state.braking}`;
+    case 'CtrErrSpike': return `center_err=${round(noise(0.25), 3)} speed=${speed} curve=${curveActive}`;
+    case 'CW': return `clockwise curve=${curveActive} steer=${steer} speed=${speed}`;
+    case 'CWRecovery': return `recovery=${!curveActive} steer=${steer}`;
+    case 'CurveAction': return `phase=${state.autoPhase} active=${curveActive} steer=${steer}`;
+    case 'CurveDebug': return `active=${curveActive} steer=${steer} speed=${speed} yaw=${yaw}`;
+    case 'CurveDegradedEnter': return `enter degraded mode reason=steering_demand steer=${steer}`;
+    case 'CurveDegradedExit': return `exit degraded mode steer=${steer}`;
+    case 'CurveDegradedPending': return `pending=${curveActive} speed=${speed}`;
+    case 'CurveDegradedStay': return `staying degraded steer=${steer} speed=${speed}`;
+    case 'CurveDisabled': return `disabled=${!curveActive} reason=simulated_state`;
+    case 'CurveEntry': return `enter curve direction=${steer >= 0 ? 'right' : 'left'} steer=${steer}`;
+    case 'CurveExit': return `exit curve steer=${steer} speed=${speed}`;
+    case 'CurveHold': return `hold steer=${steer} speed=${speed}`;
+    case 'CurveInvalid': return `curve_valid=${curveActive} confidence=${round(0.85 + noise(0.1), 2)}`;
+    case 'CurveSteer': return `steer=${steer} target=${round(state.requestedSteer, 1)} speed=${speed}`;
+    case 'Dashboard': return `client=${state.activeSocketId ? 'connected' : 'waiting'} telemetry=${config.telemetryHz}Hz`;
+    case 'HailoYoloBackend': return `inference=simulated detections=${Math.floor(Math.random() * 4)}`;
+    case 'IMUDamp': return `yaw_rate=${round(noise(0.08), 3)} damp=${round(Math.abs(steer) * 0.01, 3)} steer=${steer}`;
+    case 'IntersectionManeuver': return curveActive ? 'active=true maneuver=simulated_curve' : 'active=false';
+    case 'IntersectionSafe': return `active=${curveActive} speed=${speed}`;
+    case 'LocalYoloBackend': return `inference=simulated latency_ms=${round(8 + noise(2), 1)}`;
+    case 'Localization': return `x=${round(state.pose.x, 3)} y=${round(state.pose.y, 3)} yaw=${yaw} healthy=true`;
+    case 'LocalizationInput': return `imu_fresh=true uwb_fresh=true speed=${speed}`;
+    case 'LocalizationLocationSample': return `sample x=${round(state.pose.x + noise(0.01), 3)} y=${round(state.pose.y + noise(0.01), 3)}`;
+    case 'NavGoal': return `goal=${state.navigationGoal ?? 'none'} active=${state.navigationGoal !== null}`;
+    case 'NavProgress': return `phase=${state.autoPhase} speed=${speed} goal=${state.navigationGoal ?? 'none'}`;
+    case 'NavReplan': return `replan=false reason=simulator_no_blockage`;
+    case 'NavReseed': return `reseed=false route_seed=simulated`;
+    case 'NavRouteBlock': return `blocked=false goal=${state.navigationGoal ?? 'none'}`;
+    case 'NavStartSeed': return `seed=simulated start=(${round(state.pose.x, 2)},${round(state.pose.y, 2)})`;
+    case 'Navigation': return `active=${state.navigationGoal !== null} phase=${state.autoPhase}`;
+    case 'ObstacleContext': return `obstacles=${Math.floor(Math.random() * 3)} nearest_m=${round(2 + Math.random() * 8, 2)}`;
+    case 'Overtake': return `state=${Math.random() > 0.85 ? 'PASS' : 'IDLE'} speed=${speed}`;
+    case 'PathFollowerDBG': return `speed=${speed} steer=${steer} target_speed=${round(state.requestedSpeed, 1)}`;
+    case 'PedestrianStop': return `detected=${Math.random() > 0.9} braking=${state.braking}`;
+    case 'Perception': return `objects=${Math.floor(Math.random() * 4)} camera=simulated`;
+    case 'PFCheck': return `path_valid=true speed=${speed} steer=${steer}`;
+    case 'PFNode': return `active=${state.navigationGoal !== null} idx=${Math.floor(state.pose.x + state.pose.y)} speed=${speed}`;
+    case 'PoseCheck': return `healthy=true yaw=${yaw} speed=${speed}`;
+    case 'PoseData': return `x=${round(state.pose.x, 3)} y=${round(state.pose.y, 3)} yaw=${yaw}`;
+    case 'PurePursuit': return `active=${state.kl === '30'} target_speed=${round(state.requestedSpeed, 1)} steer=${steer}`;
+    case 'RoundaboutPath': return `active=${curveActive} phase=${state.autoPhase}`;
+    case 'RoundaboutSign': return `detected=${state.warningIndex % 4 === 0}`;
+    case 'RunLog': return `phase=${state.autoPhase} speed=${speed} battery=${battery}`;
+    case 'SemaphoreBindings': return `count=3 selected=${(state.semaphoreStep % 3) + 1}`;
+    case 'SemaphoreRoute': return `light=${semaphoreState} route_action=${semaphoreState === 'red' ? 'stop' : 'continue'}`;
+    case 'SemaphoreV2X': return `state=${semaphoreState} source=simulated_v2x`;
+    case 'Semaphores': return `id=${(state.semaphoreStep % 3) + 1} state=${semaphoreState}`;
+    case 'ServerSemData': return `id=${(state.semaphoreStep % 3) + 1} state=${semaphoreState} age_ms=${Math.floor(Math.random() * 100)}`;
+    case 'SignControl': return `warning=${warningNames[state.warningIndex % warningNames.length]}`;
+    case 'SignDIAG': return `camera=simulated confidence=${round(0.8 + Math.random() * 0.19, 2)}`;
+    case 'SignState': return `state=${warningNames[state.warningIndex % warningNames.length]} active=true`;
+    case 'SpecialPath': return `active=${curveActive} phase=${state.autoPhase}`;
+    case 'StartGate': return `ready=${state.kl === '30'} semaphore=${semaphoreState}`;
+    case 'StartGateList': return `semaphores=3 nearest=${(state.semaphoreStep % 3) + 1}`;
+    case 'SteerDiag': return `center_err=${round(noise(0.2), 3)} raw=${steer} final=${steer} in_curve=${curveActive}`;
+    case 'StopConfirm': return `confirmed=${state.braking || Math.abs(state.actualSpeed) < 1} speed=${speed}`;
+    case 'StopReject': return `rejected=${!state.braking && Math.abs(state.actualSpeed) > 5} speed=${speed}`;
+    case 'StraightCtrl': return `center_err=${round(noise(0.15), 3)} raw_angle=${steer} final=${steer}`;
+    case 'TrafficCommBridge': return `connected=${state.serialConnected} messages=${state.loggerSequence}`;
+    case 'VehicleInLane': return `in_lane=${Math.abs(state.actualSteer) < 180} confidence=${round(0.9 + noise(0.05), 2)}`;
+    default: return `simulated ${source} state=${state.autoPhase}`;
+  }
+}
+
+function emitSyntheticLogger() {
+  const source = loggerSources[state.loggerIndex % loggerSources.length];
+  state.loggerIndex += 1;
+  const level = loggerLevelFor(source);
+  emitLogger(level, source, syntheticLoggerMessage(source));
+}
 
 const autoPhases = [
   { seconds: 3, speed: 0, steer: 0, name: 'ready' },
@@ -621,6 +757,7 @@ const timers = [
   setInterval(emitCameras, 100),  // production front camera rate: 10 Hz
   setInterval(emitRearCamera, 200), // production rear camera rate: 5 Hz
   setInterval(emitHeartbeat, 20000),
+  setInterval(emitSyntheticLogger, 1000 / config.loggerHz),
 ];
 
 function shutdown(signal) {
@@ -644,6 +781,6 @@ httpServer.on('error', (error) => {
 
 httpServer.listen(config.port, config.host, () => {
   console.log(`[simulator] Socket.IO server listening on http://${config.host}:${config.port}`);
-  console.log(`[simulator] physics=${config.physicsHz}Hz telemetry=${config.telemetryHz}Hz cameras=${config.camerasEnabled ? 'on' : 'off'}`);
+  console.log(`[simulator] physics=${config.physicsHz}Hz telemetry=${config.telemetryHz}Hz logger=${config.loggerHz}Hz cameras=${config.camerasEnabled ? 'on' : 'off'}`);
   console.log('[simulator] use KL 30 + manual controls, or KL 30 + auto for the driving cycle');
 });

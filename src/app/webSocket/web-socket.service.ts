@@ -29,6 +29,16 @@
 import { Injectable, ApplicationRef } from '@angular/core';
 import { Socket } from 'ngx-socket-io';
 import { Observable, Subject } from 'rxjs';
+
+export interface LoggerMessage {
+  timestamp: string;
+  timestampMs: number;
+  sequence: number;
+  level: 'DEBUG' | 'INFO' | 'WARNING' | 'ERROR';
+  source: string;
+  message: string;
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -66,7 +76,8 @@ export class WebSocketService {
     'Calibration',
     'CalibPWMData',
     'CalibRunDone',
-    'ImuAck'
+    'ImuAck',
+    'logger'
   ]);
 
   constructor(private appRef: ApplicationRef) {
@@ -178,6 +189,10 @@ export class WebSocketService {
   // Method to get Enable Buton signal
   receiveEnableButton(): Observable<any> {
     return this.webSocket.fromEvent('EnableButton');
+  }
+
+  receiveLogger(): Observable<LoggerMessage> {
+    return this.webSocket.fromEvent<LoggerMessage>('logger');
   }
 
   // Method to receive cars location updates

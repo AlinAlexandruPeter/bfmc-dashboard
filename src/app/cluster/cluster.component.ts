@@ -47,6 +47,8 @@ import { SideMarkerComponent } from './side-marker/side-marker.component'
 import { CommonModule } from '@angular/common';
 import { ClusterService } from './cluster.service';
 import { GoalInputComponent } from './goal-input/goal-input.component';
+import { LoggerMessage } from '../webSocket/web-socket.service';
+
 @Component({
   selector: 'app-cluster',
   standalone: true,
@@ -80,7 +82,13 @@ export class ClusterComponent {
   private klSubscription: Subscription | undefined;
   private currentSerialConnectionStateSubscription: Subscription | undefined;
   private serialConnectionStateSubscription: Subscription | undefined;
-  constructor( private  webSocketService: WebSocketService, private clusterService: ClusterService) { }
+  latestLogger: LoggerMessage | null = null;
+  constructor( private  webSocketService: WebSocketService, private clusterService: ClusterService) { 
+    this.webSocketService.receiveLogger().subscribe((log) => {
+      this.latestLogger = log;
+      console.log('LOGGER FROM SERVICE:', log);
+    });
+  }
 
   ngOnInit()
   {
