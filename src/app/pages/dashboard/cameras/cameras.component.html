@@ -8,13 +8,40 @@
       <ng-icon name="tablerCamera" size="30"></ng-icon>
     </div>
   </app-bento>
-  <app-bento 
-    bentoTitle="Rear Camera" 
-    class="rear-camera" 
-    className='h-full'
-  >
-    <div>
-      <ng-icon name="tablerDeviceComputerCamera" size="30"></ng-icon>
-    </div>
-  </app-bento>
+  <div class="speed-camera-container">
+    <app-bento 
+      bentoTitle="Speed"
+      class="speed-changer"
+    >
+      <div 
+        class="speed-buttons" 
+        [style.--active-index]="activeSpeedIndex"
+        [style.--active-color]="speedColors[activeSpeedIndex]"
+      >
+        <span 
+          (click)="activeSpeedIndex = 0" 
+          [class.active]="activeSpeedIndex === 0"
+        >0</span>
+        
+        <span 
+          (click)="activeSpeedIndex = 1" 
+          [class.active]="activeSpeedIndex === 1"
+        >15</span>
+        
+        <span 
+          (click)="activeSpeedIndex = 2" 
+          [class.active]="activeSpeedIndex === 2"
+        >30</span>
+      </div>
+    </app-bento>
+    <app-bento 
+      bentoTitle="Rear Camera" 
+      class="rear-camera" 
+      className='h-full'
+    >
+      <div>
+        <ng-icon name="tablerDeviceComputerCamera" size="30"></ng-icon>
+      </div>
+    </app-bento>
+  </div>
 </div>

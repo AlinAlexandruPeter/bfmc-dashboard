@@ -24,3 +24,61 @@
   align-items: center;
   margin-block: auto;
 }
+
+.speed-camera-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 0.5rem;
+  height: 100%;
+  width: 100%;
+}
+
+.speed-changer {
+  width: 100%;
+}
+
+.speed-buttons {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  background-color: #010610;
+  padding: 0.2rem;
+  margin-block: 0.5rem;
+  position: relative;
+  border-radius: 4px;
+}
+
+.speed-buttons span {
+  flex: 1;
+  text-align: center;
+  padding: 0.25rem 0;
+  cursor: pointer;
+  position: relative;
+  z-index: 1; 
+  color: #6b7280;
+  transition: color 0.3s ease;
+}
+
+.speed-buttons span.active {
+  color: white;
+  pointer-events: none;
+}
+
+.speed-buttons::after {
+  content: '';
+  position: absolute;
+  width: calc((100% - 0.4rem) / 3); 
+  height: calc(100% - 0.4rem);
+  top: 0.2rem;
+  left: 0.2rem;
+  background-color: var(--active-color, cadetblue);
+  border-radius: 2px;
+  z-index: 0;
+  transform: translateX(calc(100% * var(--active-index)));
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.speed-buttons span:not(.active):hover {
+  background-color: #17202d;
+}

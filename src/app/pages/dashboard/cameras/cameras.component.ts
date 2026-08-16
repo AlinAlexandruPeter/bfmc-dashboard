@@ -17,4 +17,6 @@ import { tablerCamera, tablerDeviceComputerCamera } from '@ng-icons/tabler-icons
   })]
 })
 export class CamerasComponent {
+  activeSpeedIndex = 0
+  speedColors = ['#ef4444', '#f59e0b', '#10b981'];
 }
