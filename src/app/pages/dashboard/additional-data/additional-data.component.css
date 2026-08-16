@@ -1,0 +1,76 @@
+.add-data-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  height: 100%;
+}
+
+.imu-data,
+.loc-data {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  row-gap: 0.5rem;
+  width: 100%;
+  padding-inline: 0.75rem;
+}
+
+.imu-info,
+.loc-info,
+.battery-info {
+  display: flex;
+  justify-content: space-between;
+  color: rgba(255, 255, 255, 0.5);
+  font-family: sans-serif;
+  font-weight: 400;
+}
+
+.loc-value {
+  display: flex;
+  align-items: center;
+  color: #237424;
+}
+
+.loc-value span {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.battery-container {
+  display: flex;
+  align-items: center;
+  margin-top: 2rem;
+  gap: 6rem;
+}
+
+.battery-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.battery {
+  position: relative;
+  width: 10rem;
+  height: 5rem;
+  border: 3px solid gray;
+  border-radius: 12px;
+  padding: 0.35rem;
+}
+
+.battery-fill {
+  height: 100%;
+  background-color: #00c950;
+  border-radius: 6px;
+  transition: all 300ms ease-out;
+}
+
+.battery-nub {
+  width: 0.75rem;
+  height: 2rem;
+  background-color: gray;
+}
+
+.battery-data {
+  width: 100%;
+  padding-inline: 3rem;
+}
+

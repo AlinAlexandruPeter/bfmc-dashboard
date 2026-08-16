@@ -9,6 +9,7 @@ import { NgIcon, provideIcons } from '@ng-icons/core';
 import { ChartsComponent } from "./charts/charts.component";
 import { TelemetryComponent } from "./telemetry/telemetry.component";
 import { CamerasComponent } from "./cameras/cameras.component";
+import { AdditionalDataComponent } from './additional-data/additional-data.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -22,7 +23,8 @@ import { CamerasComponent } from "./cameras/cameras.component";
     NgIcon,
     ChartsComponent,
     TelemetryComponent,
-    CamerasComponent
+    CamerasComponent,
+    AdditionalDataComponent
 ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css',

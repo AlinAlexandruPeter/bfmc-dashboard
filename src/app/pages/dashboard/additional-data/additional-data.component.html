@@ -1,0 +1,64 @@
+<div class="add-data-container">
+  <app-bento bentoTitle="IMU Data" className="h-full">
+    <div class="imu-data">
+      @for (data of imuData; track $index) {
+        <div class="imu-info">
+          <span>{{ data.label }}</span>
+          <span>{{ data.value }} {{ data.unit }}</span>
+        </div>
+      }
+    </div>
+  </app-bento>
+  <app-bento bentoTitle="Localization Health & Others" className="h-full">
+    <div class="loc-data">
+      @for (data of localizationData; track $index) {
+        <div class="loc-info">
+          <span>{{ data.label }}</span>
+
+          <div class="loc-value">
+            @if (data.hasDot) {
+              <ng-icon name="tablerPointFill" size="20"></ng-icon>
+            }
+            <span>{{ data.value }}</span>
+          </div>
+        </div>
+      }
+    </div>
+  </app-bento>
+
+  <app-bento bentoTitle="Battery Status" className="h-full">
+    <div class="battery-container">
+      <div class="battery-wrapper">
+        <div class="battery">
+          <div 
+            class="battery-fill"
+            [style.width.%]="batteryLevel"
+          ></div>
+        </div>
+        
+        <div class="battery-nub"></div>
+      </div>
+
+      <div class="flex flex-col">
+        <div class="text-4xl font-semibold text-white flex items-baseline">
+          {{ batteryLevel }}
+          <span class="text-2xl text-gray-300 ml-1">%</span>
+        </div>
+        <div class="text-sm text-gray-400">State of Charge</div>
+      </div>
+
+    </div>
+
+    <hlm-separator class="my-4 opacity-40" />
+
+    <div class="battery-data">
+      @for (data of batteryData; track $index) {
+        <div class="battery-info">
+          <span>{{ data.label }}</span>
+          <span [class]="data.textColor === 'green' ? 'text-[#00c950]' : ''"
+          >{{ data.value }} {{ data?.unit }}</span>
+        </div>
+      }
+    </div>
+  </app-bento>
+</div>
